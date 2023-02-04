@@ -1,5 +1,6 @@
-#Working on a speech recognition program
-#Note that some of the parameters of this code has been modified from that of the original
+# Working on a speech recognition program
+# Using this game (Guess the word), we were able to create a system which requires the user to guess a word from a word list 
+# Hence, letting the API recognize what was said by the user
 
 import random 
 import time 
@@ -7,7 +8,7 @@ import time
 import speech_recognition as sr 
 
 def recognize_speech_from_mic(recognizer, microphone):
-    """Transcribe speech from recorded from `microphone`.
+    """This function transcribes speech the recorded from the `microphone`.
 
     Returns a dictionary with three keys:
     "success": a boolean indicating whether or not the API request was
@@ -18,7 +19,7 @@ def recognize_speech_from_mic(recognizer, microphone):
     "transcription": `None` if speech could not be transcribed,
                otherwise a string containing the transcribed text
     """
-    # check that recognizer and microphone arguments are appropriate type
+    # This code block verifys that recognizer and microphone arguments are appropriate type
     if not isinstance(recognizer, sr.Recognizer):
         raise TypeError("`recognizer` must be `Recognizer` instance")
 
@@ -56,7 +57,7 @@ def recognize_speech_from_mic(recognizer, microphone):
 
 if __name__ == "__main__":
     # set the list of words, maxnumber of guesses, and prompt limit
-    WORDS = ["Rice", "Beans", "Yam", "Strawberry", "Lemon", "Grape"]
+    WORDS = ['apple', 'banana', 'grape', 'orange', 'mango', 'lemon']
     NUM_GUESSES = 3
     PROMPT_LIMIT = 5
 
@@ -96,7 +97,7 @@ if __name__ == "__main__":
                 break
             print("I didn't catch that. What did you say?\n")
 
-        # if there was an error, stop the ga,me
+        # if there was an error, stop the game
         if guess["error"]:
             print("ERROR: {}".format(guess["error"]))
             break
@@ -104,7 +105,7 @@ if __name__ == "__main__":
         # show the user the transcription
         print("You said: {}".format(guess["transcription"]))
 
-        # determine if guess is correct and if any attempts remain
+        # This function determines if guess is correct and if there's any attempt left
         guess_is_correct = guess["transcription"].lower() == word.lower()
         user_has_more_attempts = i < NUM_GUESSES - 1
 
